@@ -16,6 +16,8 @@ import GoalsManager from '@/components/goals-manager';
 import SpendingAnalysis from '@/components/spending-analysis';
 import TransactionCalendar from '@/components/transaction-calendar';
 import MobileNav from '@/components/mobile-nav';
+import WelcomeHero from '@/components/welcome-hero';
+import ATMCard from '@/components/atm-card';
 
 interface Transaction {
   id: string;
@@ -242,28 +244,36 @@ export default function Home() {
           <p className="text-muted-foreground text-base sm:text-lg">Smart income tracking and expense management</p>
         </div>
 
+        {/* Welcome Section - Show on Dashboard */}
+        {activeTab === 'dashboard' && (
+          <>
+            <WelcomeHero userName="User" totalBalance={balance} monthlyGoal={totalExpenses} />
+            <ATMCard balance={balance} cardHolder="User Name" lastFourDigits="5678" />
+          </>
+        )}
+
         {/* Main Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 sm:space-y-6 w-full">
-          <TabsList className="grid grid-cols-5 gap-1 sm:gap-2 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-1 rounded-lg sm:rounded-xl border border-white/20 dark:border-slate-700/50 w-full overflow-x-auto">
+          <TabsList className="grid grid-cols-3 sm:grid-cols-5 gap-1 sm:gap-2 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-1 rounded-lg sm:rounded-xl border border-white/20 dark:border-slate-700/50 w-full overflow-x-auto">
             <TabsTrigger value="dashboard" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
               <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden xs:inline">Dashboard</span>
+              <span className="hidden sm:inline">Dashboard</span>
             </TabsTrigger>
             <TabsTrigger value="income" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
               <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden xs:inline">Income</span>
+              <span className="hidden sm:inline">Income</span>
             </TabsTrigger>
             <TabsTrigger value="expenses" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
               <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden xs:inline">Expenses</span>
+              <span className="hidden sm:inline">Expenses</span>
             </TabsTrigger>
             <TabsTrigger value="calendar" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
               <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden xs:inline">Calendar</span>
+              <span className="hidden sm:inline">Calendar</span>
             </TabsTrigger>
             <TabsTrigger value="goals" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
               <Target className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden xs:inline">Goals</span>
+              <span className="hidden sm:inline">Goals</span>
             </TabsTrigger>
           </TabsList>
 
@@ -306,6 +316,16 @@ export default function Home() {
               onAddGoal={addGoal}
               onDeleteGoal={deleteGoal}
               onUpdateAmount={updateGoalAmount}
+            />
+          </TabsContent>
+
+          {/* Analysis Tab */}
+          <TabsContent value="analysis" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full">
+            <SpendingAnalysis
+              incomes={data.incomeList}
+              totalIncome={totalIncome}
+              totalExpenses={totalExpenses}
+              balance={balance}
             />
           </TabsContent>
         </Tabs>

@@ -10,8 +10,8 @@ import {
 } from '@/components/ui/tooltip';
 
 interface MobileNavProps {
-  activeTab: 'dashboard' | 'income' | 'expenses' | 'goals' | 'analysis';
-  onTabChange: (tab: 'dashboard' | 'income' | 'expenses' | 'goals' | 'analysis') => void;
+  activeTab: 'dashboard' | 'income' | 'expenses' | 'goals' | 'calendar' | 'analysis';
+  onTabChange: (tab: 'dashboard' | 'income' | 'expenses' | 'goals' | 'calendar' | 'analysis') => void;
 }
 
 export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
@@ -43,7 +43,7 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
     {
       id: 'analysis',
       label: 'Analysis',
-      description: 'Spending insights',
+      description: 'Spending insights & tips',
       icon: BarChart3,
     },
   ];
