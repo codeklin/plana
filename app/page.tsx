@@ -236,7 +236,7 @@ export default function Home() {
         {/* Header */}
         <div className="mb-6 sm:mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold dark:text-blue-400" style={{ color: '#1c1c84' }}>
               Plana
             </h1>
             <div className="text-xs sm:text-sm text-muted-foreground">Your Financial Journey</div>
@@ -325,7 +325,6 @@ export default function Home() {
               incomes={data.incomeList}
               totalIncome={totalIncome}
               totalExpenses={totalExpenses}
-              balance={balance}
             />
           </TabsContent>
         </Tabs>

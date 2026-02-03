@@ -22,10 +22,11 @@ export default function ATMCard({ balance, cardHolder = 'User Name', lastFourDig
 
   return (
     <div className="relative mb-6 sm:mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <div className="relative h-56 sm:h-64 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 dark:from-blue-700 dark:via-purple-700 dark:to-pink-700 shadow-2xl p-6 sm:p-8 overflow-hidden group cursor-pointer transform transition-transform hover:scale-105 duration-300">
+      <div className="relative h-56 sm:h-64 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-800 via-blue-900 to-navy-900 dark:from-slate-900 dark:via-blue-950 dark:to-slate-950 shadow-2xl p-6 sm:p-8 overflow-hidden group cursor-pointer transform transition-transform hover:scale-105 duration-300" style={{ background: 'linear-gradient(135deg, #1e293b 0%, #1e3a8a 50%, #0f172a 100%)' }}>
         {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-500" />
-        <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-16 -mb-16" />
+        <div className="absolute top-0 right-0 w-40 h-40 bg-blue-400/20 rounded-full -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-500" />
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-slate-300/15 rounded-full -ml-16 -mb-16" />
+        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-blue-300/10 rounded-full -ml-12 -mt-12 animate-pulse" />
 
         {/* Card Content */}
         <div className="relative z-10 h-full flex flex-col justify-between text-white">
@@ -41,7 +42,7 @@ export default function ATMCard({ balance, cardHolder = 'User Name', lastFourDig
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="h-auto p-1 text-white hover:bg-white/20"
+                  className="h-auto p-1 text-white hover:bg-blue-400/20 transition-colors"
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowBalance(!showBalance);
@@ -68,7 +69,7 @@ export default function ATMCard({ balance, cardHolder = 'User Name', lastFourDig
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <div className="w-24 h-8 bg-white/30 rounded-lg" />
+                <div className="w-24 h-8 bg-slate-400/30 rounded-lg backdrop-blur-sm" />
                 <span className="text-xs opacity-80">Hidden</span>
               </div>
             )}
@@ -87,7 +88,7 @@ export default function ATMCard({ balance, cardHolder = 'User Name', lastFourDig
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="h-auto p-1 text-white hover:bg-white/20"
+                  className="h-auto p-1 text-white hover:bg-blue-400/20 transition-colors"
                   onClick={(e) => {
                     e.stopPropagation();
                     copyToClipboard();
@@ -103,7 +104,7 @@ export default function ATMCard({ balance, cardHolder = 'User Name', lastFourDig
       </div>
 
       {/* Shadow Effect */}
-      <div className="absolute -bottom-2 left-4 right-4 h-4 bg-black/10 rounded-full blur-lg" />
+      <div className="absolute -bottom-2 left-4 right-4 h-4 bg-blue-900/20 rounded-full blur-lg" />
     </div>
   );
 }
