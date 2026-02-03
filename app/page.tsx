@@ -15,6 +15,7 @@ import ExpenseTracker from '@/components/expense-tracker';
 import GoalsManager from '@/components/goals-manager';
 import SpendingAnalysis from '@/components/spending-analysis';
 import TransactionCalendar from '@/components/transaction-calendar';
+import MobileNav from '@/components/mobile-nav';
 
 interface Transaction {
   id: string;
@@ -309,6 +310,9 @@ export default function Home() {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Mobile Bottom Navigation */}
+      <MobileNav activeTab={activeTab as any} onTabChange={setActiveTab} />
     </div>
   );
 }
