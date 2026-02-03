@@ -1,6 +1,6 @@
 'use client';
 
-import { LayoutDashboard, PlusCircle, TrendingUp, Target, BarChart3 } from 'lucide-react';
+import { PlusCircle, TrendingUp, Target, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Tooltip,
@@ -10,18 +10,12 @@ import {
 } from '@/components/ui/tooltip';
 
 interface MobileNavProps {
-  activeTab: 'dashboard' | 'income' | 'expenses' | 'goals' | 'calendar' | 'analysis';
-  onTabChange: (tab: 'dashboard' | 'income' | 'expenses' | 'goals' | 'calendar' | 'analysis') => void;
+  activeTab: 'dashboard' | 'income' | 'expenses' | 'goals' | 'calendar' | 'analysis' | 'more';
+  onTabChange: (tab: 'dashboard' | 'income' | 'expenses' | 'goals' | 'calendar' | 'analysis' | 'more') => void;
 }
 
 export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
   const navItems = [
-    {
-      id: 'dashboard',
-      label: 'Dashboard',
-      description: 'Overview of your finances',
-      icon: LayoutDashboard,
-    },
     {
       id: 'income',
       label: 'Income',
@@ -41,10 +35,10 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
       icon: Target,
     },
     {
-      id: 'analysis',
-      label: 'Analysis',
-      description: 'Spending insights & tips',
-      icon: BarChart3,
+      id: 'more',
+      label: 'More',
+      description: 'Calendar, Analysis & Settings',
+      icon: MoreHorizontal,
     },
   ];
 
@@ -63,21 +57,21 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
                     onClick={() => onTabChange(item.id as any)}
                     variant="ghost"
                     size="sm"
-                    className={`flex-1 flex flex-col items-center justify-center h-18 gap-1.5 rounded-2xl mx-1 transition-all duration-300 ${
+                    className={`flex-1 flex flex-col items-center justify-center h-18 gap-2 rounded-2xl mx-1 transition-all duration-300 ${
                       isActive
                         ? 'bg-gradient-to-t from-primary/15 via-primary/10 to-primary/5 text-primary shadow-lg scale-105 border border-primary/20'
                         : 'text-muted-foreground hover:text-foreground hover:bg-muted/30 hover:scale-102'
                     }`}
                   >
-                    <div className={`p-2 rounded-xl transition-all duration-300 ${
+                    <div className={`p-1 rounded-lg transition-all duration-300 ${
                       isActive 
                         ? 'bg-primary/10 shadow-sm' 
                         : 'hover:bg-muted/50'
                     }`}>
-                      <Icon className={`w-5 h-5 transition-all duration-300 ${isActive ? 'scale-110' : ''}`} />
+                      <Icon className={`w-6 h-6 transition-all duration-300 ${isActive ? 'scale-110 font-bold' : ''}`} />
                     </div>
-                    <span className={`text-xs font-medium transition-all duration-300 ${
-                      isActive ? 'font-semibold' : ''
+                    <span className={`text-sm transition-all duration-300 ${
+                      isActive ? 'font-bold' : 'font-medium'
                     }`}>
                       {item.label}
                     </span>

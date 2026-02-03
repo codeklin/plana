@@ -18,6 +18,7 @@ import TransactionCalendar from '@/components/transaction-calendar';
 import MobileNav from '@/components/mobile-nav';
 import WelcomeHero from '@/components/welcome-hero';
 import ATMCard from '@/components/atm-card';
+import MoreMenu from '@/components/more-menu';
 
 interface Transaction {
   id: string;
@@ -215,15 +216,18 @@ export default function Home() {
         {/* Header - Modern Fintech Style */}
         <div className="mb-6 sm:mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
           <div className="flex items-center justify-between bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-slate-700/20 shadow-sm">
-            {/* Logo */}
-            <div className="flex items-center gap-3">
+            {/* Logo - Clickable to Dashboard */}
+            <button 
+              onClick={() => setActiveTab('dashboard')}
+              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-lg">P</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-bold dark:text-blue-400" style={{ color: '#1c1c84' }}>
                 Plana
               </h1>
-            </div>
+            </button>
 
             {/* User Profile Section */}
             <div className="flex items-center gap-3">
@@ -264,7 +268,8 @@ export default function Home() {
                  activeTab === 'income' ? '💰' :
                  activeTab === 'expenses' ? '💳' :
                  activeTab === 'calendar' ? '📅' :
-                 activeTab === 'goals' ? '🎯' : '📈'}
+                 activeTab === 'goals' ? '🎯' : 
+                 activeTab === 'analysis' ? '📈' : '⚙️'}
               </div>
               <div>
                 <h2 className="text-lg font-bold text-foreground capitalize">
@@ -272,7 +277,8 @@ export default function Home() {
                    activeTab === 'income' ? 'Income' :
                    activeTab === 'expenses' ? 'Expenses' :
                    activeTab === 'calendar' ? 'Calendar' :
-                   activeTab === 'goals' ? 'Goals' : 'Analysis'}
+                   activeTab === 'goals' ? 'Goals' : 
+                   activeTab === 'analysis' ? 'Analysis' : 'More'}
                 </h2>
               </div>
             </div>
@@ -286,7 +292,7 @@ export default function Home() {
 
         {/* Main Tabs - Hidden on mobile, visible on desktop */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 sm:space-y-6 w-full">
-          <TabsList className="hidden sm:grid grid-cols-5 gap-2 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-1 rounded-xl border border-white/20 dark:border-slate-700/50 w-full">
+          <TabsList className="hidden sm:grid grid-cols-6 gap-2 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-1 rounded-xl border border-white/20 dark:border-slate-700/50 w-full">
             <TabsTrigger value="dashboard" className="flex items-center gap-2 text-sm px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-sm">
               <TrendingUp className="w-4 h-4" />
               Dashboard
@@ -299,13 +305,17 @@ export default function Home() {
               <TrendingDown className="w-4 h-4" />
               Expenses
             </TabsTrigger>
+            <TabsTrigger value="goals" className="flex items-center gap-2 text-sm px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-sm">
+              <Target className="w-4 h-4" />
+              Goals
+            </TabsTrigger>
             <TabsTrigger value="calendar" className="flex items-center gap-2 text-sm px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-sm">
               <Calendar className="w-4 h-4" />
               Calendar
             </TabsTrigger>
-            <TabsTrigger value="goals" className="flex items-center gap-2 text-sm px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-sm">
-              <Target className="w-4 h-4" />
-              Goals
+            <TabsTrigger value="analysis" className="flex items-center gap-2 text-sm px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-sm">
+              <TrendingUp className="w-4 h-4" />
+              Analysis
             </TabsTrigger>
           </TabsList>
 
@@ -358,6 +368,11 @@ export default function Home() {
               totalIncome={totalIncome}
               totalExpenses={totalExpenses}
             />
+          </TabsContent>
+
+          {/* More Tab - Mobile Only */}
+          <TabsContent value="more" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full mt-0">
+            <MoreMenu onNavigate={(tab) => setActiveTab(tab)} />
           </TabsContent>
         </Tabs>
       </div>
