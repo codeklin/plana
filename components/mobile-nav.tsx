@@ -50,7 +50,7 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
 
   return (
     <TooltipProvider>
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg border-t border-border/20 shadow-2xl sm:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg border-t border-border/20 shadow-2xl sm:hidden rounded-4xl mb-3 mx-2">
         <div className="flex justify-between items-center h-20 px-1">
           {navItems.map((item) => {
             const Icon = item.icon;

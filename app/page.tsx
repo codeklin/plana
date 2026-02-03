@@ -212,15 +212,39 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 p-3 sm:p-4 md:p-6 lg:p-8 pb-24 sm:pb-8">
       <div className="w-full max-w-7xl mx-auto">
-        {/* Header */}
+        {/* Header - Modern Fintech Style */}
         <div className="mb-6 sm:mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold dark:text-blue-400" style={{ color: '#1c1c84' }}>
-              Plana
-            </h1>
-            <div className="text-xs sm:text-sm text-muted-foreground">Your Financial Journey</div>
+          <div className="flex items-center justify-between bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/20 dark:border-slate-700/20 shadow-sm">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-lg">P</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-bold dark:text-blue-400" style={{ color: '#1c1c84' }}>
+                Plana
+              </h1>
+            </div>
+
+            {/* User Profile Section */}
+            <div className="flex items-center gap-3">
+              {/* Quick Balance (Desktop only) */}
+              <div className="hidden sm:block text-right">
+                <p className="text-xs text-muted-foreground">Total Balance</p>
+                <p className="text-lg font-bold text-foreground">₦{balance.toLocaleString()}</p>
+              </div>
+              
+              {/* User Avatar & Menu */}
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center shadow-lg">
+                  <span className="text-white font-semibold text-sm">U</span>
+                </div>
+                <div className="hidden sm:block">
+                  <p className="text-sm font-medium text-foreground">User</p>
+                  <p className="text-xs text-muted-foreground">Welcome back</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <p className="text-muted-foreground text-base sm:text-lg">Smart income tracking and expense management</p>
         </div>
 
         {/* Welcome Section - Show on Dashboard */}
@@ -233,29 +257,29 @@ export default function Home() {
 
         {/* Mobile Page Title - Only visible on mobile */}
         <div className="sm:hidden mb-4 animate-in fade-in slide-in-from-top-2 duration-300">
-          <div className="flex items-center justify-between bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-4 border border-white/20 dark:border-slate-700/20 shadow-sm">
-            <div>
-              <h2 className="text-xl font-bold text-foreground capitalize">
-                {activeTab === 'dashboard' ? 'Overview' : 
-                 activeTab === 'income' ? 'Income' :
-                 activeTab === 'expenses' ? 'Expenses' :
-                 activeTab === 'calendar' ? 'Calendar' :
-                 activeTab === 'goals' ? 'Goals' : 'Analysis'}
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                {activeTab === 'dashboard' ? 'Your financial summary' : 
-                 activeTab === 'income' ? 'Manage income sources' :
-                 activeTab === 'expenses' ? 'Track your spending' :
-                 activeTab === 'calendar' ? 'Transaction history' :
-                 activeTab === 'goals' ? 'Financial targets' : 'Spending insights'}
-              </p>
+          <div className="flex items-center justify-between bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm rounded-xl p-3 border border-white/20 dark:border-slate-700/20">
+            <div className="flex items-center gap-3">
+              <div className="text-xl">
+                {activeTab === 'dashboard' ? '📊' : 
+                 activeTab === 'income' ? '💰' :
+                 activeTab === 'expenses' ? '💳' :
+                 activeTab === 'calendar' ? '📅' :
+                 activeTab === 'goals' ? '🎯' : '📈'}
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-foreground capitalize">
+                  {activeTab === 'dashboard' ? 'Overview' : 
+                   activeTab === 'income' ? 'Income' :
+                   activeTab === 'expenses' ? 'Expenses' :
+                   activeTab === 'calendar' ? 'Calendar' :
+                   activeTab === 'goals' ? 'Goals' : 'Analysis'}
+                </h2>
+              </div>
             </div>
-            <div className="text-2xl">
-              {activeTab === 'dashboard' ? '📊' : 
-               activeTab === 'income' ? '💰' :
-               activeTab === 'expenses' ? '💳' :
-               activeTab === 'calendar' ? '📅' :
-               activeTab === 'goals' ? '🎯' : '📈'}
+            {/* Mobile Balance */}
+            <div className="text-right">
+              <p className="text-xs text-muted-foreground">Balance</p>
+              <p className="text-sm font-bold text-foreground">₦{(balance / 1000).toFixed(0)}K</p>
             </div>
           </div>
         </div>
