@@ -72,7 +72,7 @@ export default function GoalsManager({ goals, onAddGoal, onDeleteGoal, onUpdateA
             </div>
             <Dialog open={isOpen} onOpenChange={setIsOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 w-full sm:w-auto">
+                <Button variant="navy" className="w-full sm:w-auto">
                   <Plus className="w-4 h-4 mr-2" />
                   New Goal
                 </Button>
@@ -128,7 +128,7 @@ export default function GoalsManager({ goals, onAddGoal, onDeleteGoal, onUpdateA
                       </SelectContent>
                     </Select>
                   </div>
-                  <Button onClick={handleAddGoal} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0">
+                  <Button onClick={handleAddGoal} variant="navy" className="w-full">
                     Create Goal
                   </Button>
                 </div>
@@ -175,8 +175,8 @@ export default function GoalsManager({ goals, onAddGoal, onDeleteGoal, onUpdateA
                           </div>
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm">
-                                ⋮
+                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-slate-100 dark:hover:bg-slate-800">
+                                <span className="text-lg font-bold text-slate-600 dark:text-slate-400 leading-none">⋯</span>
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
@@ -274,8 +274,8 @@ export default function GoalsManager({ goals, onAddGoal, onDeleteGoal, onUpdateA
                           </div>
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm">
-                                ⋮
+                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-slate-100 dark:hover:bg-slate-800">
+                                <span className="text-lg font-bold text-slate-600 dark:text-slate-400 leading-none">⋯</span>
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">

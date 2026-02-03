@@ -22,7 +22,7 @@ export default function ATMCard({ balance, cardHolder = 'User Name', lastFourDig
 
   return (
     <div className="relative mb-6 sm:mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <div className="relative h-56 sm:h-64 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-800 via-blue-900 to-navy-900 dark:from-slate-900 dark:via-blue-950 dark:to-slate-950 shadow-2xl p-6 sm:p-8 overflow-hidden group cursor-pointer transform transition-transform hover:scale-105 duration-300" style={{ background: 'linear-gradient(135deg, #1e293b 0%, #1e3a8a 50%, #0f172a 100%)' }}>
+      <div className="relative h-56 sm:h-64 rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden group cursor-pointer transform transition-transform hover:scale-105 duration-300" style={{ background: 'linear-gradient(135deg, #1e293b 0%, #1e3a8a 50%, #0f172a 100%)' }}>
         {/* Decorative Elements */}
         <div className="absolute top-0 right-0 w-40 h-40 bg-blue-400/20 rounded-full -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-500" />
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-slate-300/15 rounded-full -ml-16 -mb-16" />

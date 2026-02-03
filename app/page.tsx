@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, TrendingUp, TrendingDown, Target, Zap, MoreVertical, X, Edit2, Calendar, Wifi, WifiOff } from 'lucide-react';
+import { Plus, TrendingUp, TrendingDown, Target, Calendar } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import DashboardOverview from '@/components/dashboard-overview';
 import IncomeManager from '@/components/income-manager';
@@ -59,7 +59,6 @@ const STORAGE_KEY = 'plana_financial_data';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [isOnline, setIsOnline] = useState(true);
   const [data, setData] = useState<FinancialData>({
     incomeList: [],
     goals: [],
@@ -76,20 +75,6 @@ export default function Home() {
         console.log('[v0] Failed to parse stored data');
       }
     }
-
-    // Check online status
-    const handleOnline = () => setIsOnline(true);
-    const handleOffline = () => setIsOnline(false);
-
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-
-    setIsOnline(navigator.onLine);
-
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
   }, []);
 
   // Save to localStorage whenever data changes
@@ -225,14 +210,8 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 p-3 sm:p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 p-3 sm:p-4 md:p-6 lg:p-8 pb-24 sm:pb-8">
       <div className="w-full max-w-7xl mx-auto">
-        {/* Online/Offline Status */}
-        <div className={`mb-4 p-3 rounded-lg flex items-center gap-2 text-sm ${isOnline ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'} animate-in fade-in`}>
-          {isOnline ? <Wifi className="w-4 h-4" /> : <WifiOff className="w-4 h-4" />}
-          <span>{isOnline ? 'Online - Your data is synced' : 'Offline - Using local storage'}</span>
-        </div>
-
         {/* Header */}
         <div className="mb-6 sm:mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
@@ -252,33 +231,62 @@ export default function Home() {
           </>
         )}
 
-        {/* Main Tabs */}
+        {/* Mobile Page Title - Only visible on mobile */}
+        <div className="sm:hidden mb-4 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="flex items-center justify-between bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-4 border border-white/20 dark:border-slate-700/20 shadow-sm">
+            <div>
+              <h2 className="text-xl font-bold text-foreground capitalize">
+                {activeTab === 'dashboard' ? 'Overview' : 
+                 activeTab === 'income' ? 'Income' :
+                 activeTab === 'expenses' ? 'Expenses' :
+                 activeTab === 'calendar' ? 'Calendar' :
+                 activeTab === 'goals' ? 'Goals' : 'Analysis'}
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                {activeTab === 'dashboard' ? 'Your financial summary' : 
+                 activeTab === 'income' ? 'Manage income sources' :
+                 activeTab === 'expenses' ? 'Track your spending' :
+                 activeTab === 'calendar' ? 'Transaction history' :
+                 activeTab === 'goals' ? 'Financial targets' : 'Spending insights'}
+              </p>
+            </div>
+            <div className="text-2xl">
+              {activeTab === 'dashboard' ? '📊' : 
+               activeTab === 'income' ? '💰' :
+               activeTab === 'expenses' ? '💳' :
+               activeTab === 'calendar' ? '📅' :
+               activeTab === 'goals' ? '🎯' : '📈'}
+            </div>
+          </div>
+        </div>
+
+        {/* Main Tabs - Hidden on mobile, visible on desktop */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 sm:space-y-6 w-full">
-          <TabsList className="grid grid-cols-3 sm:grid-cols-5 gap-1 sm:gap-2 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-1 rounded-lg sm:rounded-xl border border-white/20 dark:border-slate-700/50 w-full overflow-x-auto">
-            <TabsTrigger value="dashboard" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
-              <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Dashboard</span>
+          <TabsList className="hidden sm:grid grid-cols-5 gap-2 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-1 rounded-xl border border-white/20 dark:border-slate-700/50 w-full">
+            <TabsTrigger value="dashboard" className="flex items-center gap-2 text-sm px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-sm">
+              <TrendingUp className="w-4 h-4" />
+              Dashboard
             </TabsTrigger>
-            <TabsTrigger value="income" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
-              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Income</span>
+            <TabsTrigger value="income" className="flex items-center gap-2 text-sm px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-sm">
+              <Plus className="w-4 h-4" />
+              Income
             </TabsTrigger>
-            <TabsTrigger value="expenses" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
-              <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Expenses</span>
+            <TabsTrigger value="expenses" className="flex items-center gap-2 text-sm px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-sm">
+              <TrendingDown className="w-4 h-4" />
+              Expenses
             </TabsTrigger>
-            <TabsTrigger value="calendar" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
-              <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Calendar</span>
+            <TabsTrigger value="calendar" className="flex items-center gap-2 text-sm px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-sm">
+              <Calendar className="w-4 h-4" />
+              Calendar
             </TabsTrigger>
-            <TabsTrigger value="goals" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
-              <Target className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Goals</span>
+            <TabsTrigger value="goals" className="flex items-center gap-2 text-sm px-4 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-700 data-[state=active]:shadow-sm">
+              <Target className="w-4 h-4" />
+              Goals
             </TabsTrigger>
           </TabsList>
 
           {/* Dashboard Tab */}
-          <TabsContent value="dashboard" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full">
+          <TabsContent value="dashboard" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full mt-0">
             <DashboardOverview
               totalIncome={totalIncome}
               totalExpenses={totalExpenses}
@@ -289,7 +297,7 @@ export default function Home() {
           </TabsContent>
 
           {/* Income Tab */}
-          <TabsContent value="income" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full">
+          <TabsContent value="income" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full mt-0">
             <IncomeManager
               incomes={data.incomeList}
               onAddIncome={addIncome}
@@ -300,17 +308,17 @@ export default function Home() {
           </TabsContent>
 
           {/* Expenses Tab */}
-          <TabsContent value="expenses" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full">
+          <TabsContent value="expenses" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full mt-0">
             <ExpenseTracker incomes={data.incomeList} totalExpenses={totalExpenses} totalIncome={totalIncome} />
           </TabsContent>
 
           {/* Calendar Tab */}
-          <TabsContent value="calendar" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full">
+          <TabsContent value="calendar" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full mt-0">
             <TransactionCalendar transactions={data.transactions} />
           </TabsContent>
 
           {/* Goals Tab */}
-          <TabsContent value="goals" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full">
+          <TabsContent value="goals" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full mt-0">
             <GoalsManager
               goals={data.goals}
               onAddGoal={addGoal}
@@ -320,7 +328,7 @@ export default function Home() {
           </TabsContent>
 
           {/* Analysis Tab */}
-          <TabsContent value="analysis" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full">
+          <TabsContent value="analysis" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full mt-0">
             <SpendingAnalysis
               incomes={data.incomeList}
               totalIncome={totalIncome}
