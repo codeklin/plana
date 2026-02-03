@@ -129,11 +129,11 @@ export default function IncomeManager({
                     <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 flex items-center justify-between cursor-pointer hover:bg-opacity-80 transition-all" onClick={() => setExpandedIncome(isExpanded ? null : income.id)}>
                       <div className="flex-1">
                         <h3 className="font-semibold text-lg">{income.name}</h3>
-                        <p className="text-sm text-muted-foreground">Income: ${income.amount.toFixed(2)}</p>
+                        <p className="text-sm text-muted-foreground">Income: ₦{income.amount.toLocaleString()}</p>
                       </div>
                       <div className="flex items-center gap-4 mr-4">
                         <div className="text-right">
-                          <p className={`text-2xl font-bold ${remaining >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>${remaining.toFixed(2)}</p>
+                          <p className={`text-2xl font-bold ${remaining >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>₦{remaining.toLocaleString()}</p>
                           <p className="text-xs text-muted-foreground">Remaining</p>
                         </div>
                       </div>
@@ -217,7 +217,7 @@ export default function IncomeManager({
                                       <p className="text-sm font-medium">{expense.name}</p>
                                     </div>
                                     <div className="flex items-center gap-3">
-                                      <span className="font-semibold text-sm text-blue-600 dark:text-blue-400">${expense.amount.toFixed(2)}</span>
+                                      <span className="font-semibold text-sm text-blue-600 dark:text-blue-400">₦{expense.amount.toLocaleString()}</span>
                                       <Button
                                         size="sm"
                                         variant="ghost"
@@ -237,7 +237,7 @@ export default function IncomeManager({
                           <div className="pt-3 border-t border-border/50 space-y-2">
                             <div className="flex items-center justify-between text-sm">
                               <span className="text-muted-foreground">Total Expenses:</span>
-                              <span className="font-semibold text-red-600 dark:text-red-400">${expenseTotal.toFixed(2)}</span>
+                              <span className="font-semibold text-red-600 dark:text-red-400">₦{expenseTotal.toLocaleString()}</span>
                             </div>
                             <div className="w-full bg-border/30 rounded-full h-2 relative overflow-hidden">
                               <div

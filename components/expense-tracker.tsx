@@ -76,11 +76,11 @@ export default function ExpenseTracker({ incomes, totalExpenses, totalIncome }: 
         </Card>
 
         <Card className="border-0 shadow-lg bg-gradient-to-br from-green-500/10 to-emerald-500/10 dark:from-green-500/5 dark:to-emerald-500/5">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm text-green-700 dark:text-green-400">Savings Potential</CardTitle>
+          <CardHeader className="pb-2 sm:pb-3">
+            <CardTitle className="text-xs sm:text-sm text-green-700 dark:text-green-400">Savings Potential</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-green-600 dark:text-green-400">${(totalIncome - totalExpenses).toFixed(2)}</div>
+          <CardContent className="p-3 sm:p-6">
+            <div className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400">₦{(totalIncome - totalExpenses).toLocaleString()}</div>
             <p className="text-xs text-muted-foreground mt-1">Available for savings</p>
           </CardContent>
         </Card>
