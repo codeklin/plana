@@ -221,8 +221,12 @@ export default function Home() {
               onClick={() => setActiveTab('dashboard')}
               className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-lg">P</span>
+              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/plana-logo.png" 
+                  alt="Plana Logo" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <h1 className="text-2xl sm:text-3xl font-bold dark:text-blue-400" style={{ color: '#1c1c84' }}>
                 Plana
