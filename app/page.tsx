@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, TrendingUp, TrendingDown, Target, Calendar } from 'lucide-react';
+import { Plus, TrendingUp, TrendingDown, Target, Calendar, Settings } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import DashboardOverview from '@/components/dashboard-overview';
 import IncomeManager from '@/components/income-manager';
@@ -269,7 +269,8 @@ export default function Home() {
                  activeTab === 'expenses' ? '💳' :
                  activeTab === 'calendar' ? '📅' :
                  activeTab === 'goals' ? '🎯' : 
-                 activeTab === 'analysis' ? '📈' : '⚙️'}
+                 activeTab === 'analysis' ? '📈' : 
+                 activeTab === 'settings' ? '⚙️' : '⚙️'}
               </div>
               <div>
                 <h2 className="text-lg font-bold text-foreground capitalize">
@@ -278,7 +279,8 @@ export default function Home() {
                    activeTab === 'expenses' ? 'Expenses' :
                    activeTab === 'calendar' ? 'Calendar' :
                    activeTab === 'goals' ? 'Goals' : 
-                   activeTab === 'analysis' ? 'Analysis' : 'More'}
+                   activeTab === 'analysis' ? 'Analysis' : 
+                   activeTab === 'settings' ? 'Settings' : 'More'}
                 </h2>
               </div>
             </div>
@@ -373,6 +375,17 @@ export default function Home() {
           {/* More Tab - Mobile Only */}
           <TabsContent value="more" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full mt-0">
             <MoreMenu onNavigate={(tab) => setActiveTab(tab)} />
+          </TabsContent>
+
+          {/* Settings Tab */}
+          <TabsContent value="settings" className="space-y-4 sm:space-y-6 animate-in fade-in duration-300 w-full mt-0">
+            <div className="text-center py-12">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-slate-500 to-gray-600 flex items-center justify-center shadow-lg">
+                <Settings className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Settings</h2>
+              <p className="text-muted-foreground">App preferences and account settings coming soon</p>
+            </div>
           </TabsContent>
         </Tabs>
       </div>

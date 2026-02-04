@@ -44,7 +44,7 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
 
   return (
     <TooltipProvider>
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg border-t border-border/20 shadow-2xl sm:hidden rounded-4xl mb-3 mx-2">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg border-t border-border/20 shadow-2xl sm:hidden rounded-t-3xl">
         <div className="flex justify-between items-center h-20 px-1">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -57,21 +57,21 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
                     onClick={() => onTabChange(item.id as any)}
                     variant="ghost"
                     size="sm"
-                    className={`flex-1 flex flex-col items-center justify-center h-18 gap-2 rounded-2xl mx-1 transition-all duration-300 ${
+                    className={`flex-1 flex flex-col items-center justify-center h-18 gap-2 mx-1 transition-all duration-300 ${
                       isActive
-                        ? 'bg-gradient-to-t from-primary/15 via-primary/10 to-primary/5 text-primary shadow-lg scale-105 border border-primary/20'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/30 hover:scale-102'
+                        ? 'text-white'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/30'
                     }`}
                   >
-                    <div className={`p-1 rounded-lg transition-all duration-300 ${
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                       isActive 
-                        ? 'bg-primary/10 shadow-sm' 
+                        ? 'bg-blue-900 shadow-lg' 
                         : 'hover:bg-muted/50'
                     }`}>
-                      <Icon className={`w-6 h-6 transition-all duration-300 ${isActive ? 'scale-110 font-bold' : ''}`} />
+                      <Icon className="w-6 h-6" />
                     </div>
                     <span className={`text-sm transition-all duration-300 ${
-                      isActive ? 'font-bold' : 'font-medium'
+                      isActive ? 'font-bold text-blue-900' : 'font-medium'
                     }`}>
                       {item.label}
                     </span>
