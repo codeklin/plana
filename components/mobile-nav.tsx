@@ -44,8 +44,8 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
 
   return (
     <TooltipProvider>
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg border-t border-border/20 shadow-2xl sm:hidden rounded-t-3xl">
-        <div className="flex justify-between items-center h-20 px-1">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg border-t border-border/20 shadow-2xl sm:hidden rounded-3xl mb-2">
+        <div className="flex justify-between items-center h-20 px-2 mx-2">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -57,7 +57,7 @@ export default function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
                     onClick={() => onTabChange(item.id as any)}
                     variant="ghost"
                     size="sm"
-                    className={`flex-1 flex flex-col items-center justify-center h-18 gap-2 mx-1 transition-all duration-300 ${
+                    className={`flex-1 flex flex-col items-center justify-center h-18 gap-1 mx-1 transition-all duration-300 ${
                       isActive
                         ? 'text-white'
                         : 'text-muted-foreground hover:text-foreground hover:bg-muted/30'
