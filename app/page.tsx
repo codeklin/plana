@@ -50,7 +50,7 @@ interface FinancialData {
     targetAmount: number;
     currentAmount: number;
     type: 'savings' | 'expense';
-    period: 'weekly' | 'monthly';
+    period: 'weekly' | 'monthly' | 'yearly';
     createdDate: string;
   }>;
   transactions: Transaction[];
@@ -178,7 +178,7 @@ export default function Home() {
     }));
   };
 
-  const addGoal = (name: string, targetAmount: number, type: 'savings' | 'expense', period: 'weekly' | 'monthly') => {
+  const addGoal = (name: string, targetAmount: number, type: 'savings' | 'expense', period: 'weekly' | 'monthly' | 'yearly') => {
     const newGoal = {
       id: Date.now().toString(),
       name,
