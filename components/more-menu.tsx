@@ -13,7 +13,7 @@ export default function MoreMenu({ onNavigate }: MoreMenuProps) {
     {
       id: 'analysis',
       title: 'Analysis',
-      description: 'Spending insights and recommendations',
+      description: 'Spending insights.',
       icon: BarChart3,
       color: 'from-purple-500 to-violet-600',
       action: () => onNavigate('analysis'),
@@ -21,7 +21,7 @@ export default function MoreMenu({ onNavigate }: MoreMenuProps) {
     {
       id: 'calendar',
       title: 'Calendar',
-      description: 'View transaction history by date',
+      description: 'View transaction history.',
       icon: Calendar,
       color: 'from-blue-500 to-cyan-500',
       action: () => onNavigate('calendar'),
@@ -29,7 +29,7 @@ export default function MoreMenu({ onNavigate }: MoreMenuProps) {
     {
       id: 'settings',
       title: 'Settings',
-      description: 'App preferences and account settings',
+      description: 'App preferences and settings',
       icon: Settings,
       color: 'from-slate-500 to-gray-600',
       action: () => onNavigate('settings'),
