@@ -10,7 +10,6 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'Plana - Personal Finance Planner',
   description: 'Track income, manage expenses, and achieve financial goals with Plana',
-  generator: 'v0.app',
   icons: {
     icon: [
       {

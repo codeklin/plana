@@ -73,7 +73,7 @@ export default function Home() {
       try {
         setData(JSON.parse(saved));
       } catch {
-        console.log('[v0] Failed to parse stored data');
+        console.log('Failed to parse stored data');
       }
     }
   }, []);

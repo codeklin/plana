@@ -289,16 +289,6 @@ window.addEventListener('offline', () => setIsOnline(false));
 
 ---
 
-## 🐛 Debugging
-
-All console logs have `[v0]` prefix:
-```typescript
-console.log('[v0] Data loaded from storage');
-console.log('[v0] Failed to parse stored data');
-```
-
----
-
 ## 📝 Next Steps
 
 1. **Test on real devices** (Android phones, tablets)
