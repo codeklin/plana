@@ -1,0 +1,66 @@
+{
+  "name": "Plana - Personal Finance Planner",
+  "short_name": "Plana",
+  "description": "Track income, manage expenses, and achieve financial goals with Plana. Built for Nigerian users with offline-first support.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8B5CF6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/plana-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/plana-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "productivity", "utilities"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Add Income",
+      "short_name": "Income",
+      "description": "Add a new income source",
+      "url": "/?tab=income",
+      "icons": [
+        {
+          "src": "/plana-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Add Expense",
+      "short_name": "Expense",
+      "description": "Track a new expense",
+      "url": "/?tab=expenses",
+      "icons": [
+        {
+          "src": "/plana-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "View Goals",
+      "short_name": "Goals",
+      "description": "Check your financial goals",
+      "url": "/?tab=goals",
+      "icons": [
+        {
+          "src": "/plana-logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
+}
+
